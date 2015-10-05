@@ -1,7 +1,7 @@
-#ifndef __FLIF_DEC_H__
-#define __FLIF_DEC_H__
+#ifndef FLIF_DEC_H
+#define FLIF_DEC_H
 
 template <typename IO>
-bool decode(IO io, Images &images, int quality, int scale);
+bool flif_decode(IO io, Images &images, int quality, int scale);
 
 #endif

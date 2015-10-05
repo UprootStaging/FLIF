@@ -1,10 +1,10 @@
-#ifndef __FLIF_ENC_H__
-#define __FLIF_ENC_H__
+#ifndef FLIF_ENC_H
+#define FLIF_ENC_H
 
 #include "image/color_range.h"
 #include "transform/factory.h"
 
 template <typename IO>
-bool encode(IO io, Images &images, std::vector<std::string> transDesc, int encoding, int learn_repeats, int acb, int frame_delay, int palette_size, int lookback);
+bool flif_encode(IO io, Images &images, std::vector<std::string> transDesc, int encoding, int learn_repeats, int acb, int frame_delay, int palette_size, int lookback);
 
 #endif
