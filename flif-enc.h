@@ -4,6 +4,7 @@
 #include "image/color_range.h"
 #include "transform/factory.h"
 
-bool encode(const char* filename, Images &images, std::vector<std::string> transDesc, int encoding, int learn_repeats, int acb, int frame_delay, int palette_size, int lookback);
+template <typename IO>
+bool encode(IO io, Images &images, std::vector<std::string> transDesc, int encoding, int learn_repeats, int acb, int frame_delay, int palette_size, int lookback);
 
 #endif
