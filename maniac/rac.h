@@ -5,9 +5,6 @@
 #include <stdint.h>
 #include <assert.h>
 
-#include "../stacktrace.h"
-
-
 /* RAC configuration for 40-bit RAC */
 class RacConfig40
 {
