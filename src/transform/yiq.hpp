@@ -27,9 +27,10 @@ ColorVal static inline get_min_i(int par, ColorVal y) {
     } else {
       return 0;
     }
-
-    return -(4*par -1);
     */
+
+    return -(4*par) -1;
+#if 0
     if (y<par-1) {
       return -4-4*y;
     /*} else if (y>=3*par) {
@@ -38,6 +39,7 @@ ColorVal static inline get_min_i(int par, ColorVal y) {
     } else {
       return -(4*par - 1);
     }
+#endif
 }
 
 ColorVal static inline get_max_i(int par, ColorVal y) {
@@ -52,9 +54,10 @@ ColorVal static inline get_max_i(int par, ColorVal y) {
     } else {
       return 8*par-2;
     }
+    */
 
     return 4*par-1;
-    */
+#if 0
     if (y<par-1) {
       return 2+4*y;
     /* } else if (y>=3*par) {
@@ -63,6 +66,7 @@ ColorVal static inline get_max_i(int par, ColorVal y) {
     } else {
       return 4*par-2;
     }
+#endif
 }
 
 ColorVal static inline get_min_q(int par, ColorVal y, ColorVal i) {
@@ -82,8 +86,9 @@ ColorVal static inline get_min_q(int par, ColorVal y, ColorVal i) {
       return std::max(1+(y-2*par)*2, 2*par-(y-par+1)*2+(abs(i-4*par+1)/2)*2);
     }
 
-    return -(4*par - 1);
     */
+    return -(4*par) - 1;
+#if 0
     if (y<par-1) {
       return -2-2*y+(abs(i-4*par+1)/2)*2;
     /* } else if (y>=3*par) {
@@ -93,6 +98,7 @@ ColorVal static inline get_min_q(int par, ColorVal y, ColorVal i) {
       // return std::max(1+(y-2*par)*2, 2*par-(y-par+1)*2+(abs(i-4*par+1)/2)*2);
       return -(4*par - 1);
     }
+#endif
 }
 
 ColorVal static inline get_max_q(int par, ColorVal y, ColorVal i) {
@@ -131,7 +137,7 @@ public:
     bool isStatic() const { return false; }
     int numPlanes() const { return ranges->numPlanes(); }
 
-    ColorVal min(int p) const { return (p == 0) ? 0 : ((p < 3) ? -(4*par - 1) : ranges->min(p)); }
+    ColorVal min(int p) const { return (p == 0) ? 0 : ((p < 3) ? -(4*par) - 1 : ranges->min(p)); }
     ColorVal max(int p) const {
       /*switch(p) {
                                         case 0: return 4*par-1;
