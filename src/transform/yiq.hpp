@@ -22,12 +22,10 @@ ColorVal static inline get_min_i(int par, ColorVal y) {
     if (y<par-1) {
       return -4-4*y;
     } else if (y>=3*par) {
-      return 4*(y-4*par);
+      return 3+4*(y-4*par);
     } else {
-      return -4*par - 1;
+      return -4*par;
     }
-
-    // return -(4*par) -1;
 }
 
 ColorVal static inline get_max_i(int par, ColorVal y) {
@@ -35,14 +33,12 @@ ColorVal static inline get_max_i(int par, ColorVal y) {
     assert(y <= get_max_y(par));
 
     if (y<par-1) {
-      return 4+4*y;
+      return 2+4*y;
     } else if (y>=3*par) {
-      return 4*par-4-4*(y-3*par);
+      return 4*par-5-4*(y-3*par);
     } else {
-      return 4*par-1;
+      return 4*par-2;
     }
-
-    // return 4*par-1;
 }
 
 ColorVal static inline get_min_q(int par, ColorVal y, ColorVal i) {
@@ -58,10 +54,8 @@ ColorVal static inline get_min_q(int par, ColorVal y, ColorVal i) {
     } else if (y>=3*par) {
       return -1-2*(4*par-1-y);
     } else {
-      return -4*par + std::max(1+(y-2*par)*2, 2*par-(y-par+1)*2+(abs(i+1)/2)*2);
+      return std::max(-4*par + 1+(y-2*par)*2, -2*par-(y-par+1)*2+(abs(i+1)/2)*2);
     }
-
-    // return -(4*par) - 1;
 }
 
 ColorVal static inline get_max_q(int par, ColorVal y, ColorVal i) {
@@ -81,7 +75,6 @@ ColorVal static inline get_max_q(int par, ColorVal y, ColorVal i) {
       return std::min(2*par-2+(y-par+1)*2, 2*par-1+(3*par-1-y)*2-((1+abs(i+1))/2)*2);
     }
 
-    // return 4*par - 1;
 }
 
 
@@ -99,17 +92,23 @@ public:
     bool isStatic() const { return false; }
     int numPlanes() const { return ranges->numPlanes(); }
 
-    ColorVal min(int p) const { return (p == 0) ? 0 : ((p < 3) ? -(4*par) - 1 : ranges->min(p)); }
+    ColorVal min(int p) const {
+      switch(p) {
+        case 0: return 0;
+        case 1: return -4*par;
+        case 2: return -4*par;
+        default: return ranges->min(p);
+      };
+    }
     ColorVal max(int p) const {
-      /*switch(p) {
-                                        case 0: return 4*par-1;
-                                        case 1: return 8*par-2;
-                                        case 2: return 8*par-2;
-                                        default: return ranges->max(p);
-                                         };
-                                         */
-                                return (p < 3) ? 4*par - 1 : ranges->max(p);
-                              }
+      switch(p) {
+        case 0: return 4*par-1;
+        case 1: return 4*par-2;
+        case 2: return 4*par-2;
+        default: return ranges->max(p);
+      };
+    }
+
     void minmax(const int p, const prevPlanes &pp, ColorVal &minv, ColorVal &maxv) const {
          if (p==1) { minv=get_min_i(par, pp[0]); maxv=get_max_i(par, pp[0]); return; }
          else if (p==2) { minv=get_min_q(par, pp[0], pp[1]); maxv=get_max_q(par, pp[0], pp[1]); return; }
