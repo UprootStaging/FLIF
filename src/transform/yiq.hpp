@@ -44,10 +44,10 @@ ColorVal static inline get_max_i(int par, ColorVal y) {
 ColorVal static inline get_min_q(int par, ColorVal y, ColorVal i) {
     assert(y >= get_min_y(par));
     assert(y <= get_max_y(par));
-    // if (i < get_min_i(par,y)) return 8*par; //invalid value
-    // if (i > get_max_i(par,y)) return 8*par; //invalid value
-    assert(i >= get_min_i(par,y));
-    assert(i <= get_max_i(par,y));
+    if (i < get_min_i(par,y)) return 8*par; //invalid value
+    if (i > get_max_i(par,y)) return 8*par; //invalid value
+    // assert(i >= get_min_i(par,y));
+    // assert(i <= get_max_i(par,y));
 
     if (y<par-1) {
       return -2-2*y+(abs(i+1)/2)*2;
@@ -62,10 +62,10 @@ ColorVal static inline get_max_q(int par, ColorVal y, ColorVal i) {
     assert(y >= get_min_y(par));
     assert(y <= get_max_y(par));
 
-    // if (i < get_min_i(par,y)) return -1; //invalid value
-    // if (i > get_max_i(par,y)) return -1; //invalid value
-    assert(i >= get_min_i(par,y));
-    assert(i <= get_max_i(par,y));
+    if (i < get_min_i(par,y)) return -8*par; //invalid value
+    if (i > get_max_i(par,y)) return -8*par; //invalid value
+    // assert(i >= get_min_i(par,y));
+    // assert(i <= get_max_i(par,y));
 
     if (y<par-1) {
       return 2*y;
