@@ -5,7 +5,7 @@ compiler:
   - clang
 
 sudo: true
-dist: trusty
+dist: xenial
 
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
