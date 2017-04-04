@@ -1,7 +1,5 @@
 set -ex
 
-pushd
-
 mkdir ~/build-libpng
 cd ~/build-libpng
 wget "http://prdownloads.sourceforge.net/libpng/libpng-1.6.28.tar.xz"
@@ -10,4 +8,5 @@ cd libpng-1.6.28/
 ./configure || cat config.log
 make install
 
+popd
 popd
